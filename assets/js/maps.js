@@ -8,10 +8,9 @@ var map, places,google,icon, infoWindow;
       var autocomplete;
       var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
       
+  
       
-      
-      
-      
+      var hostnameRegexp = new RegExp('^https?://.+?/');
       
 
 function initMap() {
@@ -66,6 +65,7 @@ autocomplete = new google.maps.places.Autocomplete(
 function searchAccomodation(accomodation){
   var accomodation = {
       bounds: map.getBounds(),
+      icon: 'assets/images/markers/m1.png' ,
       types: ["lodging"]
   };  
       
@@ -78,12 +78,12 @@ places.nearbySearch(accomodation, FindAccom );
         clearMarkers();
         for (var i = 0; i < results.length; i++) {
           var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
-          
+          var markerIcon = MARKER_PATH + markerLetter + '.png';
   
           accomMarkers[i] = new google.maps.Marker({
             position: results[i].geometry.location,
             animation: google.maps.Animation.DROP,
-            icon: 'assets/images/markers/m1.png' ,
+            icon: markerIcon,
             size: new google.maps.Size(2, 2),
             origin: new google.maps.Point(0, 0),
             anchor: new google.maps.Point(17, 10),
@@ -91,7 +91,7 @@ places.nearbySearch(accomodation, FindAccom );
           });
         
           accomMarkers[i].placeResult = results[i];
-            google.maps.event.addListener(accomMarkers[i], 'click', showInfoWindow);
+            google.maps.event.addListener(accomMarkers[i], 'click');
             setTimeout(dropMarker(i), i * 100);
             addResult(results[i], i);
         }
@@ -109,6 +109,7 @@ places.nearbySearch(accomodation, FindAccom );
 function searchBars(bars){
   var bars = {
     bounds: map.getBounds(),
+    icon: 'assets/images/markers/m2.png',
     types: ["bar"]
   };  
 
@@ -120,13 +121,13 @@ function searchBars(bars){
       clearMarkers();
       for (var i = 0; i < results.length; i++) {
         var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
-        
+        var markerIcon = MARKER_PATH + markerLetter + '.png';
         
                  
         barsMarkers[i] = new google.maps.Marker({
           position: results[i].geometry.location,
           animation: google.maps.Animation.DROP,
-          icon: 'assets/images/markers/m2.png',
+          icon: markerIcon,
           size: new google.maps.Size(2, 2),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(17, 10),
@@ -138,9 +139,10 @@ function searchBars(bars){
           setTimeout(dropMarker(i), i * 100);
           addResult(results[i], i);        
       }
-    }
-  };
-FindBars();
+    };
+  }
+  FindBars();
+  
 }
 
 
@@ -152,9 +154,10 @@ FindBars();
 //--------------------------------------ATTRACTIONS SEARCH ----------------
 
 
-function searchAttractions(){
+function searchAttractions(attractions){
  var attractions = {
     bounds: map.getBounds(),
+    icon: 'assets/images/markers/m3.png',
     types: ['food']   
   };    
 
@@ -166,12 +169,12 @@ function searchAttractions(){
       clearMarkers();
       for (var i = 0; i < results.length; i++) {
         var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
-        
+        var markerIcon = MARKER_PATH + markerLetter + '.png';
                  
         attractionsMarkers[i] = new google.maps.Marker({
           position: results[i].geometry.location,
           animation: google.maps.Animation.DROP,
-          icon: 'assets/images/markers/m3.png',
+          icon: markerIcon,
           size: new google.maps.Size(0, 0),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(17, 10),
@@ -192,7 +195,7 @@ FindAttractions();
 //-----------------------------------RESTAURANTS---------------------------
 
 
-function searchRestaurants(){
+function searchRestaurants(restaurants){
  var restaurants = {
           bounds: map.getBounds(),
           icon: 'assets/images/markers/m1.png',
@@ -208,12 +211,12 @@ function searchRestaurants(){
       clearMarkers();
       for (var i = 0; i < results.length; i++) {
         var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
-        
+        var markerIcon = MARKER_PATH + markerLetter + '.png';
                  
         restaurantsMarkers[i] = new google.maps.Marker({
           position: results[i].geometry.location,
           animation: google.maps.Animation.DROP,
-          icon: 'assets/images/markers/m5.png',
+          icon: markerIcon,
           size: new google.maps.Size(0, 0),
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(5, 5),
@@ -258,35 +261,36 @@ function dropMarker(i) {
         var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
         var markerIcon = MARKER_PATH + markerLetter + '.png';
 
+
+
         var tr = document.createElement('tr');
         tr.style.backgroundColor = (i % 2 === 0 ? '#F0F0F0' : '#FFFFFF');
         tr.onclick = function() {
-          google.maps.event.trigger(barsMarkers[i], 'click');
-          google.maps.event.trigger(accomMarkers[i], 'click');
-          google.maps.event.trigger(attractionsMarkers[i], 'click');
-          google.maps.event.trigger(restaurantsMarkers[i], 'click');
+          google.maps.event.trigger(markers[i], 'click', showInfoWindow);
         };
 
-        
-       
-       
- var iconTd = document.createElement('td');
+        var iconTd = document.createElement('td');
         var nameTd = document.createElement('td');
         var icon = document.createElement('img');
+        icon.src = markerIcon;
         icon.setAttribute('class', 'placeIcon');
         icon.setAttribute('className', 'placeIcon');
-        var name = document.createTextNode(result.name);7
+        var name = document.createTextNode(result.name);
         iconTd.appendChild(icon);
         nameTd.appendChild(name);
         tr.appendChild(iconTd);
         tr.appendChild(nameTd);
         results.appendChild(tr);
-        
-        
-        
-        tr.appendChild(nameTd);
-        results.appendChild(tr);
+
+        results.setAttribute("style", "color:black; padding: 10px;");
+
+
       }
+
+        
+       
+       
+        
 
       function clearResults() {
         var results = document.getElementById('results');
@@ -355,4 +359,3 @@ function dropMarker(i) {
           document.getElementById('iw-website-row').style.display = 'none';
         }
       }    
-      

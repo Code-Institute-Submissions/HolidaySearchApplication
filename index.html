@@ -5,26 +5,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Holiday search app</title>
-    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.1.1/css/hover-min.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 </head>
 <body>
-    <header class="heading container-fluid">
-            <h1 class="name">HOLIDAY SEARCH APPLICATION ! !</h1>
-    </header>
-   
-      <div class='row'>
-        <div id='map' class='col-md-offset-1 col-md-6  col-sm-12'> </div>
-          <div class='autocomplete col-md-offset-1 col-md-3 col-md-offset-1 col-sm-12'>
-              <label for="input-destination">Find destination :</label>
-              <input id="input-destination" class="controls" type="text" placeholder="Search . . .">
-              <div id='results'>
-                
-              </div>      
-              <div style="display: none">
+  <header class="header">
+    <h1>Find your holiday destination !</h1>
+  </header>
+  <section class='container-fluid'>
+    <div class='row'>
+      <div class='autocomplete destination_input container'>
+          <label  for="input-destination">Find destination :</label>
+          <input id="input-destination" class="controls" type="text" placeholder="Search . . .">
+      </div>
+    </div>
+    <div class='row'>
+      <div class="col-md-1  col-sm-2"></div>
+      <div id='map' class='col-md-5  col-sm-8'></div>
+      <div class="col-md-2 col-sm-2"></div>
+      <div class="col-md-4 col-sm-10">
+        <h3 class='results_header'> Nearly places found : </h3>
+      </div>
+      <div class='results_table col-md-4 col-sm-10' id="results"></div>
+    </div>
+<div class="row">
+    <div class="" style="display: none">
       <div id="info-content">
         <table>
           <tr id="iw-url-row" class="iw_table_row">
@@ -49,17 +56,15 @@
           </tr>
         </table>
       </div>
-    </div>     
-        </div>
-      </div>
-    
-   
-   
-   
-    <script type="text/javascript" src="assets/js/maps.js"></script>
-    
-      <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBujjVxT6emzgWT_0jeRiqrVQ6L6X6AHp8&libraries=places&callback=initMap"
+    </div>  
+</div>
+    </div>
+  </section>
+  <footer class='container-fluid'><p> Copyrights Mariusz Brozda 2019<sup> &copy;  </sup></p></footer>
+  <script type="text/javascript" src="assets/js/maps.js"></script>
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-8vrMtObZn5lZZZ58xGRdazHdu4ftx-U
+&libraries=places&callback=initMap"
         async defer></script>
     
   
