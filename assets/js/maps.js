@@ -282,7 +282,7 @@ function dropMarker(i) {
         tr.appendChild(nameTd);
         results.appendChild(tr);
 
-        results.setAttribute("style", "color:black; padding: 10px;");
+        results.setAttribute("style", "color:black; padding: 5px;margin: 2px;");
 
 
       }

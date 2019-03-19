@@ -1,7 +1,67 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 
+
+
+/*------------------CSS RESET---------- */
+
+
+
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+display: block;
+}
 body {
-  
+line-height: 1;
+}
+ol, ul {
+list-style: none;
+}
+blockquote, q {
+quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+content: '';
+content: none;
+}
+table {
+border-collapse: collapse;
+border-spacing: 0;
+}
+
+
+
+
+
+/*-------------------END CSS RESET -------------- */
+
+
+
+
+body {
   background-attachment: fixed;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -10,50 +70,52 @@ body {
 }
 
 
-.container {
-  height: 100vh;
-  width: 100vw; /* Maximum width */
-  margin: 0 auto; /* Center it */
-}
+
 
 
 .destination_input {
   font-family: 'Amatic SC', cursive;
-  margin-top: 50px;
-  margin-bottom: 25px;
+  margin-top: 30px;
   height: 30px;
   color: white;
   font-size: 20px;
   text-shadow: 2px 2px 2px black;
   text-align: center;
+  overflow: hidden;
+}
+
+.destination_input input {
+  color: black;
 }
 
 .header{
   font-family: 'Amatic SC', cursive;
   padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 25px;
   height: 40px;
-  font-size: 25px;
+  font-size: 3.25em;
   color: white;
   text-shadow: 2px 2px 2px black;
   text-align: center;
+  margin-bottom: 15px;
 }
 
-.results_header {
+.results_table > h2 {
+  padding: 6px;
+  text-align:  center;
   font-family: 'Amatic SC', cursive;
   font-size: 21px;
-  margin: 0;
-  padding: 0px;
   color: white;
   text-shadow: 2px 2px 2px black;
-  
 }
 
 .results_table {
+  width: 340px;
   background-color: rgba(0,0,0,0.5);
   font-weight: bold;
-  margin-top: 35px;
-
-  height: 300px;
+  margin-top: 30px;
+  height: 350px;
   overflow: auto;
 }
 
@@ -66,9 +128,10 @@ body {
 
 
 footer {
+  width: 100%;
   padding: 0;
-  margin:  0 ;
-  margin-top: 51px;
+  position: fixed;
+  bottom: 0;
   height: 50px;
   line-height:  50px;
   color: white;
@@ -82,13 +145,39 @@ footer {
 
 
 .autocomplete{
-    height:  50px;
+    height:  40px;
     overflow: auto;
 }
 
 .placeIcon{
-    color:  grey;
+    color:  red;
     background-color: blue;
 }
 
+
+/*------------------------MEDIA QUERY--------- */
+
+
+
+
+@media (max-width: 988px) {
+  .results_header {
+    text-align:  center;
+  }
+
+  .results_table {
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 70px;
+  }
+
+  .header {
+    margin-bottom: 60px;
+  }
+}
+
+
+
+
+ 
 
