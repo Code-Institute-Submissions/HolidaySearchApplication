@@ -12,76 +12,75 @@
 </head>
 <body>
 
-<!                                 HEADER                 ->
-
+<!------------------------------------HEADER---------------->
   <header class="header">
     <h1>Find your holiday destination !</h1>
   </header>
 
-<!                                CONTENT              ->
-
+<!------------------------------------CONTENT---------->
   <section class='container-fluid'>
-<!                                DESTINATION INPUT          ->
+
+<!-------------------------------------DESTINATION INPUT-------->
     <div class='row'>
       <div class='autocomplete destination_input container'>
           <label  for="input-destination">Find destination :</label>
           <input id="input-destination" class="controls" type="text" placeholder="Search . . .">
       </div>
     </div>
-    
-<!                                   RESULTS                   ->
+
+<!-------------------------------------------RESULTS----------------->
     <div class='row'>
-      <div class="col-md-1"></div>
-      <div id='map' class='col-md-4'></div>
-      <div class="col-md-1"></div>
-<!                                     RESULTS TABLE                ->
-      <div class='results_table col-md-5'>
+      <div class="col-md-1 col-sm-1"></div>
+      <div id='map' class='col-md-4 col-sm-4'></div>
+      <div class="col-md-1 col-sm-1"></div>
+
+<!-------------------------------------------RESULTS TABLE------------->
+      <div class='results_table col-md-5 col-sm-5'>
         <h2 class=''> Nearly places found : </h2>
         <div class='' id="results"></div>
       </div>
-      <div class="col-md-1 "></div>
-    </div>             
-    
-<!                                        INFO WINDOW ( HIDDEN ) ->
-<div class="row">
-    <div class="" style="display: none">
-      <div id="info-content">
-        <table>
-          <tr id="iw-url-row" class="iw_table_row">
-            <td id="iw-icon" class="iw_table_icon"></td>
-            <td id="iw-url"></td>
-          </tr>
-          <tr id="iw-address-row" class="iw_table_row">
-            <td class="iw_attribute_name">Address:</td>
-            <td id="iw-address"></td>
-          </tr>
-          <tr id="iw-phone-row" class="iw_table_row">
-            <td class="iw_attribute_name">Telephone:</td>
-            <td id="iw-phone"></td>
-          </tr>
-          <tr id="iw-rating-row" class="iw_table_row">
-            <td class="iw_attribute_name">Rating:</td>
-            <td id="iw-rating"></td>
-          </tr>
-          <tr id="iw-website-row" class="iw_table_row">
-            <td class="iw_attribute_name">Website:</td>
-            <td id="iw-website"></td>
-          </tr>
-        </table>
-      </div>
-    </div>  
-</div>
+      <div class="col-md-1 col-sm-1"></div>
+    </div>               
+<!---------------------------------------------INFO WINDOW ( HIDDEN )----->
+    <div class="row">
+        <div class="" style="display: none">
+          <div id="info-content">
+            <table>
+              <tr id="iw-url-row" class="iw_table_row">
+                <td id="iw-icon" class="iw_table_icon"></td>
+                <td id="iw-url"></td>
+              </tr>
+              <tr id="iw-address-row" class="iw_table_row">
+                <td class="iw_attribute_name">Address:</td>
+                <td id="iw-address"></td>
+              </tr>
+              <tr id="iw-phone-row" class="iw_table_row">
+                <td class="iw_attribute_name">Telephone:</td>
+                <td id="iw-phone"></td>
+              </tr>
+              <tr id="iw-rating-row" class="iw_table_row">
+                <td class="iw_attribute_name">Rating:</td>
+                <td id="iw-rating"></td>
+              </tr>
+              <tr id="iw-website-row" class="iw_table_row">
+                <td class="iw_attribute_name">Website:</td>
+                <td id="iw-website"></td>
+              </tr>
+            </table>
+          </div>
+        </div>  
     </div>
   </section>
-
-<!                                  FOOTER                          ->
+<!--------------------------------------FOOTER---------------------->
   <footer class='container-fluid'>
     <p> Copyrights Mariusz Brozda 2019<sup> &copy; </sup></p>
   </footer>
   <script type="text/javascript" src="assets/js/maps.js"></script>
-  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+  </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-8vrMtObZn5lZZZ58xGRdazHdu4ftx-U
 &libraries=places&callback=initMap"
-        async defer></script>
+        async defer>
+  </script>
 </body>
 </html>
