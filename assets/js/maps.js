@@ -1,17 +1,17 @@
-var map, places,google,icon, infoWindow;
-      var markers = [];
-      var barsMarkers = [];
-      var accomMarkers = [];
-      var attractionsMarkers = [];
-      var restaurantsMarkers = [];
-      var hostnameRegexp = new RegExp('^https?://.+?/');
-      var autocomplete;
-      var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
-      
   
-      
-      var hostnameRegexp = new RegExp('^https?://.+?/');
-      
+//---------- ADD GLOBAL VARIABLES
+
+var map, places,google,icon, infoWindow;
+var markers = [];
+var barsMarkers = [];
+var accomMarkers = [];
+var attractionsMarkers = [];
+var restaurantsMarkers = [];
+var autocomplete;
+var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
+var hostnameRegexp = new RegExp('^https?://.+?/');     
+
+//---------- fUNCTION TO CREATE BASIC MAP
 
 function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -22,11 +22,18 @@ function initMap() {
           zoomControl: false,
           streetViewControl: false
         });
-        
+
+
+//---------- FUNCTION TO CREATE PLACE INFO WINDOW
+       
 infoWindow = new google.maps.InfoWindow({
           content: document.getElementById('info-content')
         });
-    
+
+
+//-----------FUNCTION TO CREATE AUTOCOMPLETE OBJECT 
+// AND CONNECT IT TO INPUT DESTINATION, SET DEFAULT PLACES TYPE FOR 'CITIES'
+   
 places = new google.maps.places.PlacesService(map);
 autocomplete = new google.maps.places.Autocomplete(
   /** @type {!HTMLInputElement} */ (
@@ -35,17 +42,16 @@ autocomplete = new google.maps.places.Autocomplete(
     });
         
         
-        
+//----ADD LISTENER FOR AUTOCOMPLETE FUNCTION TO REACT FOR CHANGES
         
     autocomplete.addListener('place_changed', onPlaceChanged);
-    document.getElementById('CheckBox').addEventListener(
-      'change', );
+    
 
       function onPlaceChanged() {
         var place = autocomplete.getPlace();
         if (place.geometry) {
           map.panTo(place.geometry.location);
-          map.setZoom(15);
+          map.setZoom(10);
           searchAccomodation();
           searchBars();
           searchAttractions();
@@ -65,11 +71,10 @@ autocomplete = new google.maps.places.Autocomplete(
 function searchAccomodation(accomodation){
   var accomodation = {
       bounds: map.getBounds(),
-      icon: 'assets/images/markers/m1.png' ,
       types: ["lodging"]
   };  
       
-places.nearbySearch(accomodation, FindAccom );
+  places.nearbySearch(accomodation, FindAccom );
 
 
   function FindAccom(results, status){
@@ -78,7 +83,7 @@ places.nearbySearch(accomodation, FindAccom );
         clearMarkers();
         for (var i = 0; i < results.length; i++) {
           var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
-          var markerIcon = MARKER_PATH + markerLetter + '.png';
+          var markerIcon = MARKER_PATH  + '.png';
   
           accomMarkers[i] = new google.maps.Marker({
             position: results[i].geometry.location,
@@ -109,7 +114,6 @@ places.nearbySearch(accomodation, FindAccom );
 function searchBars(bars){
   var bars = {
     bounds: map.getBounds(),
-    icon: 'assets/images/markers/m2.png',
     types: ["bar"]
   };  
 
@@ -146,10 +150,7 @@ function searchBars(bars){
 }
 
 
-     
-     
-      
-     
+    
 
 //--------------------------------------ATTRACTIONS SEARCH ----------------
 
@@ -157,8 +158,7 @@ function searchBars(bars){
 function searchAttractions(attractions){
  var attractions = {
     bounds: map.getBounds(),
-    icon: 'assets/images/markers/m3.png',
-    types: ['food']   
+    types: ['museum', 'food', 'store', 'food', 'spa']   
   };    
 
   places.nearbySearch(attractions, FindAttractions );
@@ -179,6 +179,9 @@ function searchAttractions(attractions){
           origin: new google.maps.Point(0, 0),
           anchor: new google.maps.Point(17, 10),
           scaledSize: new google.maps.Size(5, 1)
+
+
+
         });
               
         attractionsMarkers[i].placeResult = results[i];
@@ -249,10 +252,13 @@ function dropMarker(i) {
   return function() {
     markers[i];
     barsMarkers[i].setMap(map);
+    restaurantsMarkers[i].setMap(map);
     attractionsMarkers[i].setMap(map);
     accomMarkers[i].setMap(map);
   };
 }
+
+
 
 }
 
@@ -287,10 +293,7 @@ function dropMarker(i) {
 
       }
 
-        
-       
-       
-        
+      
 
       function clearResults() {
         var results = document.getElementById('results');
@@ -308,8 +311,7 @@ function dropMarker(i) {
                 return;
               }
               infoWindow.open(map, marker);
-             
-              
+            
               buildIWContent(place);
             });
       }
@@ -359,3 +361,5 @@ function dropMarker(i) {
           document.getElementById('iw-website-row').style.display = 'none';
         }
       }    
+
+
