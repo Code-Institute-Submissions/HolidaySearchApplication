@@ -1,7 +1,7 @@
 
 ## PROJECT NAME : Holiday Search Application
 
-This is single page application for searching holiday destinations
+This is single page application for searching holiday destinations. 
 1. Search and show on map destination city typed by user.
 2. Get the information about choosen place
 3. Find nearly attractions, bars and restaurants and also accomodation
@@ -9,6 +9,7 @@ This is single page application for searching holiday destinations
 
 
 ## UX
+
 
 LINK TO PROJECT MOCKUP https://app.moqups.com/XsbTuRDlbH/view/page/ad64222d5?ui=0
 
